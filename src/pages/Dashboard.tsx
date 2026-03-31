@@ -4,6 +4,7 @@ import { useAuth } from "../hooks/useAuth";
 import { getUserProfile } from "../api/userApi";
 import { useNavigate } from "react-router-dom";
 import { logoutUser } from "../api/authApi";
+import MainLayout from "../layouts/MainLayout";
 
 export default function Dashboard() {
     const { token, logout } = useAuth();
@@ -27,15 +28,25 @@ export default function Dashboard() {
         navigate("/");           // 🔁 redirect to login
     };
 
+    const handleClick = () => {
+        navigate("/wallet");
+    };
+
     return (
-        <div>
-            <h2>Dashboard</h2>
+        <MainLayout>
+            <div>
+                <h2>Dashboard</h2>
 
-            <button onClick={handleLogout}>
-                Logout
-            </button>
+                <button onClick={handleLogout}>
+                    Logout
+                </button>
 
-            <pre>{JSON.stringify(data, null, 2)}</pre>
-        </div>
+                <button onClick={handleClick}>
+                    My wallets
+                </button>
+
+                <pre>{JSON.stringify(data, null, 2)}</pre>
+            </div>
+        </MainLayout>
     );
 }

@@ -22,8 +22,10 @@ export const AuthProvider = ({ children }: any) => {
             try {
                 const data = await refreshToken();
                 setToken(data.token);
+                setAccessToken(data.token);
             } catch {
                 setToken(null);
+                setAccessToken(null);
             } finally {
                 setIsLoading(false); // 🔥 IMPORTANT
             }
